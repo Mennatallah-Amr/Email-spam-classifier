@@ -5,21 +5,18 @@ from nltk import word_tokenize
 from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 
-# --------------------------------------------------
-# Set NLTK data path (for Streamlit Cloud)
-# --------------------------------------------------
 nltk_data_path = os.path.join(os.path.dirname(__file__), "nltk_data")
 nltk.data.path.append(nltk_data_path)
 
-# --------------------------------------------------
+
 # Initialize tools
-# --------------------------------------------------
+
 ps = PorterStemmer()
 STOPWORDS = set(stopwords.words('english'))
 
-# --------------------------------------------------
+
 # Preprocessing function
-# --------------------------------------------------
+
 def preprocess_text(text):
     text = text.lower()
     tokens = word_tokenize(text)
