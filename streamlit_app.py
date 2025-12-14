@@ -7,18 +7,14 @@ import nltk
 nltk.data.path.append("./nltk_data")
 
 
-# --------------------------------------------------
-# Page config (MUST be first Streamlit command)
-# --------------------------------------------------
+
 st.set_page_config(
     page_title="Email Spam Classifier",
     page_icon="📧",
     layout="centered"
 )
 
-# --------------------------------------------------
-# Background image function
-# --------------------------------------------------
+
 def set_background(image_path):
     with open(image_path, "rb") as image_file:
         encoded = base64.b64encode(image_file.read()).decode()
@@ -80,18 +76,17 @@ def set_background(image_path):
 # Apply background
 set_background("background1.jpg")
 
-# --------------------------------------------------
 # Load model & vectorizer
-# --------------------------------------------------
+
 with open("model.pkl", "rb") as f:
     model = pickle.load(f)
 
 with open("vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
-# --------------------------------------------------
+
 # Sidebar
-# --------------------------------------------------
+
 st.sidebar.title("About")
 st.sidebar.info(
     "This app uses a Logistic Regression model "
@@ -114,9 +109,8 @@ if st.sidebar.button("Load Spam Example"):
 if st.sidebar.button("Load Ham Example"):
     st.session_state.email_text = ham_example
 
-# --------------------------------------------------
 # Main UI
-# --------------------------------------------------
+
 st.title("📧 Email Spam Classifier")
 st.write("Paste an email below and check whether it is **Spam** or **Ham**.")
 
@@ -126,9 +120,8 @@ email_text = st.text_area(
     key="email_text"
 )
 
-# --------------------------------------------------
 # Prediction
-# --------------------------------------------------
+
 if st.button("Predict"):
     if email_text.strip() == "":
         st.warning("Please enter email text.")
